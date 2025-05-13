@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IoT Traffic Prediction Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../iot-traffic-forecasting-frontend/styles/styles.css">
+
+</head>
+<body>
+  <div class="main-content active" id="start">
+    <h1><i class="fas fa-network-wired fa-icon"></i>IoT Traffic Prediction with ARIMA</h1>
+    <p>Selamat datang di dashboard prediksi lalu lintas jaringan IoT.</p>
+    <button onclick="navigateTo('guide')">Start</button>
+  </div>
+
+  <div class="main-content" id="guide">
+    <h1><i class="fas fa-book fa-icon"></i>Panduan Pengerjaan</h1>
+    <p>1. Pilih perangkat ESP32.<br>2. Tinjau grafik dan statistik.<br>3. Jalankan prediksi.<br>4. Tinjau hasil dan simpulan.</p>
+    <div class="control-bar">
+      <button onclick="navigateTo('start')">Back</button>
+      <button onclick="navigateTo('menu')">Lanjut</button>
+    </div>
+  </div>
+
+  <div class="main-content" id="menu">
+    <h1><i class="fas fa-microchip fa-icon"></i>Choose ESP32</h1>
+    <div class="esp-options">
+      <div class="esp-card">
+        <p>ESP32 - A</p>
+        <button onclick="navigateTo('graphs', 'ESP32 - A')">Pilih</button>
+      </div>
+      <div class="esp-card">
+        <p>ESP32 - B</p>
+        <button onclick="navigateTo('graphs', 'ESP32 - B')">Pilih</button>
+      </div>
+    </div>
+    <div class="control-bar">
+      <button onclick="navigateTo('guide')">Back</button>
+    </div>
+  </div>
+
+  <div class="main-content" id="graphs">
+    <div class="section-label" id="section-label-graphs">ESP32 - A</div>
+    <h1><i class="fas fa-chart-line fa-icon"></i>ESP32 Graph and Statistics</h1>
+    <div class="graph-grid">
+      <div class="graph-box" onclick="showPopup('Data Sensor')"><h3>Data Sensor</h3><span>(klik untuk lihat grafik)</span></div>
+      <div class="graph-box" onclick="showPopup('Latency')"><h3>Latency</h3><span>(klik untuk lihat grafik)</span></div>
+      <div class="graph-box" onclick="showPopup('RSSI')"><h3>RSSI</h3><span>(klik untuk lihat grafik)</span></div>
+      <div class="graph-box" onclick="showPopup('Packet Loss')"><h3>Packet Loss</h3><span>(klik untuk lihat grafik)</span></div>
+      <div class="graph-box" onclick="showPopup('Throughput')"><h3>Throughput</h3><span>(klik untuk lihat grafik)</span></div>
+    </div>
+    <div class="control-bar">
+      <button onclick="navigateTo('menu')">Back</button>
+      <button onclick="navigateTo('prediction')">Lanjut</button>
+    </div>
+  </div>
+
+  <div class="main-content" id="prediction">
+    <div class="section-label" id="section-label-prediction">ESP32 - A</div>
+    <h1><i class="fas fa-brain fa-icon"></i>Prediction</h1>
+    <div class="graph-grid">
+      <div class="graph-box" onclick="showPopup('Prediksi Data Sensor')"><h3>Data Sensor</h3><span>(klik untuk lihat grafik prediksi)</span></div>
+      <div class="graph-box" onclick="showPopup('Prediksi Latency')"><h3>Latency</h3><span>(klik untuk lihat grafik prediksi)</span></div>
+      <div class="graph-box" onclick="showPopup('Prediksi RSSI')"><h3>RSSI</h3><span>(klik untuk lihat grafik prediksi)</span></div>
+      <div class="graph-box" onclick="showPopup('Prediksi Packet Loss')"><h3>Packet Loss</h3><span>(klik untuk lihat grafik prediksi)</span></div>
+      <div class="graph-box" onclick="showPopup('Prediksi Throughput')"><h3>Throughput</h3><span>(klik untuk lihat grafik prediksi)</span></div>
+    </div>
+    <div class="control-bar">
+      <button onclick="navigateTo('graphs')">Back</button>
+      <button onclick="navigateTo('summary')">Lihat Kesimpulan</button>
+    </div>
+  </div>
+
+  <div class="main-content" id="summary">
+    <div class="section-label" id="section-label-summary">ESP32 - A</div>
+    <h1><i class="fas fa-flag-checkered fa-icon"></i>Kesimpulan</h1>
+    <p>Prediksi lalu lintas jaringan IoT telah berhasil dilakukan menggunakan model ARIMA dan LSTM. Grafik menunjukkan tren yang bervariasi tergantung parameter yang dipilih. Terima kasih!</p>
+    <div class="control-bar">
+      <button onclick="navigateTo('prediction')">Back</button>
+      <button onclick="navigateTo('start')">Kembali ke Awal</button>
+    </div>
+  </div>
+
+  <div id="popup" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closePopup()">&times;</span>
+      <h2 id="popupTitle"></h2>
+      <p>Placeholder grafik untuk <span id="popupContent"></span></p>
+    </div>
+  </div>
+
+  <script src="../iot-traffic-forecasting-frontend/js/index.js">
+   
+  </script>
+</body>
+</html>

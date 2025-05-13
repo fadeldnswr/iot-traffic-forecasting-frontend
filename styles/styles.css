@@ -1,0 +1,29 @@
+ * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'SF Pro Display', sans-serif; }
+    body { background: linear-gradient(to bottom right, #f5f7fa, #c3cfe2); color: #333; font-size: 16px; }
+    .main-content { min-height: 100vh; padding: 40px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; margin: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; }
+    .main-content.active { display: flex; }
+    .main-content h1 { font-size: 28px; font-weight: 700; margin-bottom: 20px; }
+    .main-content p { font-size: 16px; font-style: italic; color: #555; margin-bottom: 20px; }
+    .section-label { position: absolute; top: 20px; left: 30px; font-size: 14px; font-weight: 600; color: #8e44ad; }
+    button { background-color: #8e44ad; border: none; border-radius: 16px; padding: 12px 24px; font-size: 16px; color: white; cursor: pointer; transition: background 0.3s; }
+    button:hover { background-color: #732d91; }
+    .esp-options { display: flex; gap: 30px; margin-top: 20px; }
+    .esp-card { background-color: #ffffff; padding: 30px; border-radius: 20px; width: 200px; text-align: center; font-size: 18px; font-weight: 600; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
+    .esp-card:hover { transform: scale(1.05); }
+    .graph-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 180px); gap: 20px; width: 100%; max-width: 960px; margin-top: 20px; justify-items: center; }
+    .graph-box { border-radius: 16px; width: 90%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.2s ease; text-align: center; }
+    .graph-box:hover { transform: scale(1.05); }
+    .graph-box h3 { margin-bottom: 6px; font-size: 16px; font-weight: 700; }
+    .graph-box span { font-size: 14px; color: #333; }
+    .graph-box:nth-child(1) { background-color: #fef9e7; }
+    .graph-box:nth-child(2) { background-color: #e8f8f5; }
+    .graph-box:nth-child(3) { background-color: #fdebd0; }
+    .graph-box:nth-child(4) { background-color: #eaf2f8; }
+    .graph-box:nth-child(5) { background-color: #f9ebea; }
+    .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); }
+    .modal-content { background-color: #fff; margin: 10% auto; padding: 30px; border-radius: 20px; width: 60%; box-shadow: 0 10px 25px rgba(0,0,0,0.2); text-align: center; animation: pop-in 0.3s ease-out; }
+    @keyframes pop-in { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .close { float: right; font-size: 24px; font-weight: bold; cursor: pointer; color: #888; }
+    .close:hover { color: #000; }
+    .control-bar { margin-top: 30px; display: flex; gap: 20px; }
+    .fa-icon { margin-right: 8px; }
