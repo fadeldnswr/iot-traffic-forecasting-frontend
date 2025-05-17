@@ -4,23 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IoT Traffic Prediction Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link href="./styles/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
   <div class="main-content active" id="start">
-    <h1><i class="fas fa-network-wired fa-icon"></i>IoT Traffic Prediction Dashboard</h1>
+    <h1><i class="fas fa-network-wired fa-icon"></i>IoT Traffic Prediction with ARIMA</h1>
     <p>Selamat datang di dashboard prediksi lalu lintas jaringan IoT.</p>
-    <button onclick="navigateTo('guide')"><i class="fas fa-play btn-icon"></i>Start</button>
+    <button onclick="navigateTo('guide')">Start</button>
   </div>
 
   <div class="main-content" id="guide">
     <h1><i class="fas fa-book fa-icon"></i>Panduan Pengerjaan</h1>
     <p>1. Pilih perangkat ESP32.<br>2. Tinjau grafik dan statistik.<br>3. Jalankan prediksi.<br>4. Tinjau hasil dan simpulan.</p>
     <div class="control-bar">
-      <button onclick="navigateTo('start')"><i class="fas fa-arrow-left btn-icon"></i>Back</button>
-      <button onclick="navigateTo('menu')">Next<i class="fas fa-arrow-right btn-icon" style="margin-left: 8px; margin-right: 0;"></i></button>
+      <button onclick="navigateTo('start')">Back</button>
+      <button onclick="navigateTo('menu')">Lanjut</button>
     </div>
   </div>
 
@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="control-bar">
-      <button onclick="navigateTo('guide')"><i class="fas fa-arrow-left btn-icon"></i>Back</button>
+      <button onclick="navigateTo('guide')">Back</button>
     </div>
   </div>
 
@@ -52,61 +52,14 @@
       <div class="graph-box" onclick="showPopup('Throughput')"><h3>Throughput</h3><span>(klik untuk lihat grafik)</span></div>
     </div>
     <div class="control-bar">
-      <button onclick="navigateTo('menu')"><i class="fas fa-arrow-left btn-icon"></i>Back</button>
-      <button onclick="navigateTo('prediction')">Next<i class="fas fa-arrow-right btn-icon" style="margin-left: 8px; margin-right: 0;"></i></button>
+      <button onclick="navigateTo('menu')">Back</button>
+      <button onclick="navigateTo('prediction')">Lanjut</button>
     </div>
   </div>
 
   <div class="main-content" id="prediction">
     <div class="section-label" id="section-label-prediction">ESP32 - A</div>
-    
-    <!-- Model Selection Toolbar -->
-    <div class="model-toolbar" onclick="toggleDropdown('model')">
-      <span id="selected-model">ARIMA</span>
-      <i class="fas fa-chevron-down chevron" id="model-chevron"></i>
-    </div>
-    
-    <div class="model-dropdown" id="model-dropdown">
-      <div class="model-option selected" data-model="ARIMA" onclick="selectModel('ARIMA')">
-        <span>ARIMA</span>
-        <i class="fas fa-check checkmark"></i>
-      </div>
-      <div class="model-option" data-model="LSTM" onclick="selectModel('LSTM')">
-        <span>LSTM</span>
-        <i class="fas fa-check checkmark"></i>
-      </div>
-    </div>
-    
-    <!-- Hours Selection Toolbar -->
-    <div class="hours-toolbar" onclick="toggleDropdown('hours')">
-      <span id="selected-hours">1 Jam</span>
-      <i class="fas fa-chevron-down chevron" id="hours-chevron"></i>
-    </div>
-    
-    <div class="hours-dropdown" id="hours-dropdown">
-      <div class="hours-option selected" data-hours="1" onclick="selectHours(1)">
-        <span>1 Jam</span>
-        <i class="fas fa-check checkmark"></i>
-      </div>
-      <div class="hours-option" data-hours="2" onclick="selectHours(2)">
-        <span>2 Jam</span>
-        <i class="fas fa-check checkmark"></i>
-      </div>
-      <div class="hours-option" data-hours="3" onclick="selectHours(3)">
-        <span>3 Jam</span>
-        <i class="fas fa-check checkmark"></i>
-      </div>
-      <div class="hours-option" data-hours="4" onclick="selectHours(4)">
-        <span>4 Jam</span>
-        <i class="fas fa-check checkmark"></i>
-      </div>
-      <div class="hours-option" data-hours="5" onclick="selectHours(5)">
-        <span>5 Jam</span>
-        <i class="fas fa-check checkmark"></i>
-      </div>
-    </div>
-    
-    <h1><i class="fas fa-brain fa-icon"></i>Prediction with <span id="prediction-model-title">ARIMA</span> (<span id="prediction-hours">1</span> Jam)</h1>
+    <h1><i class="fas fa-brain fa-icon"></i>Prediction</h1>
     <div class="graph-grid">
       <div class="graph-box" onclick="showPopup('Prediksi Data Sensor')"><h3>Data Sensor</h3><span>(klik untuk lihat grafik prediksi)</span></div>
       <div class="graph-box" onclick="showPopup('Prediksi Latency')"><h3>Latency</h3><span>(klik untuk lihat grafik prediksi)</span></div>
@@ -115,18 +68,18 @@
       <div class="graph-box" onclick="showPopup('Prediksi Throughput')"><h3>Throughput</h3><span>(klik untuk lihat grafik prediksi)</span></div>
     </div>
     <div class="control-bar">
-      <button onclick="navigateTo('graphs')"><i class="fas fa-arrow-left btn-icon"></i>Back</button>
-      <button onclick="navigateTo('summary')">Next<i class="fas fa-arrow-right btn-icon" style="margin-left: 8px; margin-right: 0;"></i></button>
+      <button onclick="navigateTo('graphs')">Back</button>
+      <button onclick="navigateTo('summary')">Lihat Kesimpulan</button>
     </div>
   </div>
 
   <div class="main-content" id="summary">
     <div class="section-label" id="section-label-summary">ESP32 - A</div>
     <h1><i class="fas fa-flag-checkered fa-icon"></i>Kesimpulan</h1>
-    <p>Prediksi lalu lintas jaringan IoT telah berhasil dilakukan menggunakan model <span id="summary-model">ARIMA</span> dalam <span id="summary-hours">1</span> jam ke depan. Grafik menunjukkan tren yang bervariasi tergantung parameter yang dipilih. Terima kasih!</p>
+    <p>Prediksi lalu lintas jaringan IoT telah berhasil dilakukan menggunakan model ARIMA dan LSTM. Grafik menunjukkan tren yang bervariasi tergantung parameter yang dipilih. Terima kasih!</p>
     <div class="control-bar">
-      <button onclick="navigateTo('prediction')"><i class="fas fa-arrow-left btn-icon"></i>Back</button>
-      <button onclick="navigateTo('start')"><i class="fas fa-home btn-icon"></i>Home</button>
+      <button onclick="navigateTo('prediction')">Back</button>
+      <button onclick="navigateTo('start')">Kembali ke Awal</button>
     </div>
   </div>
 
@@ -138,13 +91,6 @@
     </div>
   </div>
 
-  <!-- Floating Home Button -->
-  <div class="home-fab" id="home-fab" onclick="navigateTo('start')">
-    <i class="fas fa-home"></i>
-  </div>
-
-  <script src="./js/index.js">
-    
-  </script>
+  <script src="./js/index.js"></script>
 </body>
 </html>
