@@ -4,23 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IoT Traffic Prediction Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
   <div class="main-content active" id="start">
-    <h1><i class="fas fa-network-wired fa-icon"></i>IoT Traffic Prediction Dashboard</h1>
+    <h1><i class="fas fa-network-wired fa-icon"></i>IoT Traffic Prediction with ARIMA</h1>
     <p>Selamat datang di dashboard prediksi lalu lintas jaringan IoT.</p>
-    <button onclick="navigateTo('guide')"><i class="fas fa-play btn-icon"></i>Start</button>
+    <button onclick="navigateTo('guide')">Start</button>
   </div>
 
   <div class="main-content" id="guide">
     <h1><i class="fas fa-book fa-icon"></i>Panduan Pengerjaan</h1>
     <p>1. Pilih perangkat ESP32.<br>2. Tinjau grafik dan statistik.<br>3. Jalankan prediksi.<br>4. Tinjau hasil dan simpulan.</p>
     <div class="control-bar">
-      <button onclick="navigateTo('start')"><i class="fas fa-arrow-left btn-icon"></i>Back</button>
-      <button onclick="navigateTo('menu')">Next<i class="fas fa-arrow-right btn-icon" style="margin-left: 8px; margin-right: 0;"></i></button>
+      <button onclick="navigateTo('start')">Back</button>
+      <button onclick="navigateTo('menu')">Lanjut</button>
     </div>
   </div>
 
@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="control-bar">
-      <button onclick="navigateTo('guide')"><i class="fas fa-arrow-left btn-icon"></i>Back</button>
+      <button onclick="navigateTo('guide')">Back</button>
     </div>
   </div>
 
@@ -71,8 +71,8 @@
       </div>
     </div>
     <div class="control-bar">
-      <button onclick="navigateTo('menu')"><i class="fas fa-arrow-left btn-icon"></i>Back</button>
-      <button onclick="navigateTo('prediction')">Next<i class="fas fa-arrow-right btn-icon" style="margin-left: 8px; margin-right: 0;"></i></button>
+      <button onclick="navigateTo('menu')">Back</button>
+      <button onclick="navigateTo('prediction')">Lanjut</button>
     </div>
   </div>
 
@@ -153,18 +153,18 @@
       </div>
     </div>
     <div class="control-bar">
-      <button onclick="navigateTo('graphs')"><i class="fas fa-arrow-left btn-icon"></i>Back</button>
-      <button onclick="navigateTo('summary')">Next<i class="fas fa-arrow-right btn-icon" style="margin-left: 8px; margin-right: 0;"></i></button>
+      <button onclick="navigateTo('graphs')">Back</button>
+      <button onclick="navigateTo('summary')">Lihat Kesimpulan</button>
     </div>
   </div>
 
   <div class="main-content" id="summary">
     <div class="section-label" id="section-label-summary">ESP32 - A</div>
     <h1><i class="fas fa-flag-checkered fa-icon"></i>Kesimpulan</h1>
-    <p>Prediksi lalu lintas jaringan IoT telah berhasil dilakukan menggunakan model <span id="summary-model">ARIMA</span> dalam <span id="summary-hours">1</span> jam ke depan. Grafik menunjukkan tren yang bervariasi tergantung parameter yang dipilih. Terima kasih!</p>
+    <p>Prediksi lalu lintas jaringan IoT telah berhasil dilakukan menggunakan model ARIMA dan LSTM. Grafik menunjukkan tren yang bervariasi tergantung parameter yang dipilih. Terima kasih!</p>
     <div class="control-bar">
-      <button onclick="navigateTo('prediction')"><i class="fas fa-arrow-left btn-icon"></i>Back</button>
-      <button onclick="navigateTo('start')"><i class="fas fa-home btn-icon"></i>Home</button>
+      <button onclick="navigateTo('prediction')">Back</button>
+      <button onclick="navigateTo('start')">Kembali ke Awal</button>
     </div>
   </div>
 
