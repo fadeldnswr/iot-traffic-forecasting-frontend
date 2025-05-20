@@ -6,7 +6,7 @@
   <title>IoT Traffic Prediction Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link href="./styles/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
   <div class="main-content active" id="start">
@@ -45,11 +45,30 @@
     <div class="section-label" id="section-label-graphs">ESP32 - A</div>
     <h1><i class="fas fa-chart-line fa-icon"></i>ESP32 Graph and Statistics</h1>
     <div class="graph-grid">
-      <div class="graph-box" onclick="showPopup('Data Sensor')"><h3>Data Sensor</h3><span>(klik untuk lihat grafik)</span></div>
-      <div class="graph-box" onclick="showPopup('Latency')"><h3>Latency</h3><span>(klik untuk lihat grafik)</span></div>
-      <div class="graph-box" onclick="showPopup('RSSI')"><h3>RSSI</h3><span>(klik untuk lihat grafik)</span></div>
-      <div class="graph-box" onclick="showPopup('Packet Loss')"><h3>Packet Loss</h3><span>(klik untuk lihat grafik)</span></div>
-      <div class="graph-box" onclick="showPopup('Throughput')"><h3>Throughput</h3><span>(klik untuk lihat grafik)</span></div>
+      <div class="graph-box" onclick="showPopup('Humidity')">
+        <h3>Humidity</h3>
+        <div class="graph-content">Humidity data will appear here</div>
+      </div>
+      <div class="graph-box" onclick="showPopup('Temperature')">
+        <h3>Temperature</h3>
+        <div class="graph-content">Temperature data will appear here</div>
+      </div>
+      <div class="graph-box" onclick="showPopup('Latency')">
+        <h3>Latency</h3>
+        <div class="graph-content">Latency data will appear here</div>
+      </div>
+      <div class="graph-box" onclick="showPopup('RSSI')">
+        <h3>RSSI</h3>
+        <div class="graph-content">RSSI data will appear here</div>
+      </div>
+      <div class="graph-box" onclick="showPopup('Packet Loss')">
+        <h3>Packet Loss</h3>
+        <div class="graph-content">Packet Loss data will appear here</div>
+      </div>
+      <div class="graph-box" onclick="showPopup('Throughput')">
+        <h3>Throughput</h3>
+        <div class="graph-content">Throughput data will appear here</div>
+      </div>
     </div>
     <div class="control-bar">
       <button onclick="navigateTo('menu')"><i class="fas fa-arrow-left btn-icon"></i>Back</button>
@@ -71,8 +90,8 @@
         <span>ARIMA</span>
         <i class="fas fa-check checkmark"></i>
       </div>
-      <div class="model-option" data-model="LSTM" onclick="selectModel('LSTM')">
-        <span>LSTM</span>
+      <div class="model-option" data-model="ARIMA-LSTM" onclick="selectModel('ARIMA-LSTM')">
+        <span>ARIMA-LSTM</span>
         <i class="fas fa-check checkmark"></i>
       </div>
     </div>
@@ -108,11 +127,30 @@
     
     <h1><i class="fas fa-brain fa-icon"></i>Prediction with <span id="prediction-model-title">ARIMA</span> (<span id="prediction-hours">1</span> Jam)</h1>
     <div class="graph-grid">
-      <div class="graph-box" onclick="showPopup('Prediksi Data Sensor')"><h3>Data Sensor</h3><span>(klik untuk lihat grafik prediksi)</span></div>
-      <div class="graph-box" onclick="showPopup('Prediksi Latency')"><h3>Latency</h3><span>(klik untuk lihat grafik prediksi)</span></div>
-      <div class="graph-box" onclick="showPopup('Prediksi RSSI')"><h3>RSSI</h3><span>(klik untuk lihat grafik prediksi)</span></div>
-      <div class="graph-box" onclick="showPopup('Prediksi Packet Loss')"><h3>Packet Loss</h3><span>(klik untuk lihat grafik prediksi)</span></div>
-      <div class="graph-box" onclick="showPopup('Prediksi Throughput')"><h3>Throughput</h3><span>(klik untuk lihat grafik prediksi)</span></div>
+      <div class="graph-box" onclick="showPopup('Prediksi Humidity')">
+        <h3>Humidity</h3>
+        <div class="graph-content">Humidity prediction will appear here</div>
+      </div>
+      <div class="graph-box" onclick="showPopup('Prediksi Temperature')">
+        <h3>Temperature</h3>
+        <div class="graph-content">Temperature prediction will appear here</div>
+      </div>
+      <div class="graph-box" onclick="showPopup('Prediksi Latency')">
+        <h3>Latency</h3>
+        <div class="graph-content">Latency prediction will appear here</div>
+      </div>
+      <div class="graph-box" onclick="showPopup('Prediksi RSSI')">
+        <h3>RSSI</h3>
+        <div class="graph-content">RSSI prediction will appear here</div>
+      </div>
+      <div class="graph-box" onclick="showPopup('Prediksi Packet Loss')">
+        <h3>Packet Loss</h3>
+        <div class="graph-content">Packet Loss prediction will appear here</div>
+      </div>
+      <div class="graph-box" onclick="showPopup('Prediksi Throughput')">
+        <h3>Throughput</h3>
+        <div class="graph-content">Throughput prediction will appear here</div>
+      </div>
     </div>
     <div class="control-bar">
       <button onclick="navigateTo('graphs')"><i class="fas fa-arrow-left btn-icon"></i>Back</button>
@@ -134,7 +172,7 @@
     <div class="modal-content">
       <span class="close" onclick="closePopup()">&times;</span>
       <h2 id="popupTitle"></h2>
-      <p>Placeholder grafik untuk <span id="popupContent"></span></p>
+      <p>Grafik <span id="popupContent"></span> diperbesar</p>
     </div>
   </div>
 
@@ -142,9 +180,5 @@
   <div class="home-fab" id="home-fab" onclick="navigateTo('start')">
     <i class="fas fa-home"></i>
   </div>
-
-  <script src="./js/index.js">
-    
-  </script>
-</body>
-</html>
+<script src="./js/main.js"></script>
+<script src="./js/index.js"></script>

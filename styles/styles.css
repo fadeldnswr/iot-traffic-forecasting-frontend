@@ -1,4 +1,4 @@
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
     
     /* Modern gradient background with animation */
     body {
@@ -163,10 +163,10 @@
     .graph-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(2, 200px);
+      grid-template-rows: repeat(2, 300px);
       gap: 30px;
       width: 100%;
-      max-width: 1080px;
+      max-width: 1200px;
       margin-top: 40px;
       justify-items: center;
     }
@@ -201,18 +201,33 @@
     }
     
     .graph-box h3 {
-      margin-bottom: 8px;
+      position: absolute;
+      top: 15px;
+      left: 0;
+      width: 100%;
+      text-align: center;
       font-size: 22px;
       font-weight: 700;
       background: linear-gradient(90deg, #ff2971, #7d19ff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      margin: 0;
+      padding: 0 15px;
     }
     
-    .graph-box span {
-      font-size: 16px;
-      color: #666;
+    .graph-content {
+      width: 90%;
+      height: 70%;
+      background-color: #f9f9f9;
+      border-radius: 12px;
+      margin-top: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #888;
+      font-size: 14px;
+      border: 1px dashed #ddd;
     }
     
     .graph-box:hover {
@@ -427,7 +442,7 @@
     @media (max-width: 1200px) {
       .graph-grid {
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 200px);
+        grid-template-rows: repeat(3, 300px);
       }
     }
     
@@ -462,7 +477,7 @@
       
       .graph-grid {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(5, 180px);
+        grid-template-rows: repeat(6, 250px);
       }
       
       .main-content h1 {

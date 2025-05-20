@@ -1,4 +1,4 @@
-let currentDevice = 'ESP32 - A';
+  let currentDevice = 'ESP32 - A';
   let currentModel = 'ARIMA';
   let currentHours = 1;
 
