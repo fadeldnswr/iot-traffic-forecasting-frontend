@@ -7,6 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <div class="main-content active" id="start">
@@ -17,10 +19,10 @@
 
   <div class="main-content" id="guide">
     <h1><i class="fas fa-book fa-icon"></i>Panduan Pengerjaan</h1>
-    <p>1. Pilih perangkat ESP32.<br>2. Tinjau grafik dan statistik.<br>3. Jalankan prediksi.<br>4. Tinjau hasil dan simpulan.</p>
+    <p>1. Pilih perangkat ESP32<br>2. Tinjau grafik dari masing-masing data ESP32 yang dipilih<br>3. Jalankan prediksi model ARIMA untuk seluruh data<br></p>
     <div class="control-bar">
       <button onclick="navigateTo('start')">Back</button>
-      <button onclick="navigateTo('menu')">Lanjut</button>
+      <button onclick="navigateTo('menu')">Next</button>
     </div>
   </div>
 
@@ -29,11 +31,11 @@
     <div class="esp-options">
       <div class="esp-card">
         <p>ESP32 - A</p>
-        <button onclick="navigateTo('graphs', 'ESP32 - A')">Pilih</button>
+        <button onclick="navigateToGraphs('graphs', 'ESP32 - A')">Choose</button>
       </div>
       <div class="esp-card">
         <p>ESP32 - B</p>
-        <button onclick="navigateTo('graphs', 'ESP32 - B')">Pilih</button>
+        <button onclick="navigateToGraphs('graphs', 'ESP32 - B')">Choose</button>
       </div>
     </div>
     <div class="control-bar">
@@ -43,7 +45,7 @@
 
   <div class="main-content" id="graphs">
     <div class="section-label" id="section-label-graphs">ESP32 - A</div>
-    <h1><i class="fas fa-chart-line fa-icon"></i>ESP32 Graph and Statistics</h1>
+    <h1><i class="fas fa-chart-line fa-icon"></i>ESP32 Graph</h1>
     <div class="graph-grid">
       <div class="graph-box" onclick="showPopup('Humidity')">
         <h3>Humidity</h3>
@@ -72,7 +74,7 @@
     </div>
     <div class="control-bar">
       <button onclick="navigateTo('menu')">Back</button>
-      <button onclick="navigateTo('prediction')">Lanjut</button>
+      <button onclick="navigateToPrediction()">Next</button>
     </div>
   </div>
 
@@ -90,81 +92,78 @@
         <span>ARIMA</span>
         <i class="fas fa-check checkmark"></i>
       </div>
-      <div class="model-option" data-model="ARIMA-LSTM" onclick="selectModel('ARIMA-LSTM')">
-        <span>ARIMA-LSTM</span>
-        <i class="fas fa-check checkmark"></i>
-      </div>
     </div>
     
     <!-- Hours Selection Toolbar -->
     <div class="hours-toolbar" onclick="toggleDropdown('hours')">
-      <span id="selected-hours">1 Jam</span>
+      <span id="selected-hours">1 Hour</span>
       <i class="fas fa-chevron-down chevron" id="hours-chevron"></i>
     </div>
     
     <div class="hours-dropdown" id="hours-dropdown">
       <div class="hours-option selected" data-hours="1" onclick="selectHours(1)">
-        <span>1 Jam</span>
+        <span>1 Hour</span>
         <i class="fas fa-check checkmark"></i>
       </div>
       <div class="hours-option" data-hours="2" onclick="selectHours(2)">
-        <span>2 Jam</span>
+        <span>2 Hours</span>
         <i class="fas fa-check checkmark"></i>
       </div>
       <div class="hours-option" data-hours="3" onclick="selectHours(3)">
-        <span>3 Jam</span>
+        <span>3 Hours</span>
         <i class="fas fa-check checkmark"></i>
       </div>
       <div class="hours-option" data-hours="4" onclick="selectHours(4)">
-        <span>4 Jam</span>
+        <span>4 Hours</span>
         <i class="fas fa-check checkmark"></i>
       </div>
       <div class="hours-option" data-hours="5" onclick="selectHours(5)">
-        <span>5 Jam</span>
+        <span>5 Hours</span>
         <i class="fas fa-check checkmark"></i>
       </div>
     </div>
     
-    <h1><i class="fas fa-brain fa-icon"></i>Prediction with <span id="prediction-model-title">ARIMA</span> (<span id="prediction-hours">1</span> Jam)</h1>
+    <h1><i class="fas fa-brain fa-icon"></i>Prediction with <span id="prediction-model-title">ARIMA</span> (<span id="prediction-hours">1</span> Hours)</h1>
     <div class="graph-grid">
-      <div class="graph-box" onclick="showPopup('Prediksi Humidity')">
+      <div class="graph-box" onclick="showPopup('Humidity')" data-key="humidity(%)">
         <h3>Humidity</h3>
         <div class="graph-content">Humidity prediction will appear here</div>
       </div>
-      <div class="graph-box" onclick="showPopup('Prediksi Temperature')">
+      <div class="graph-box" onclick="showPopup('Temperature')" data-key="temperature">
         <h3>Temperature</h3>
         <div class="graph-content">Temperature prediction will appear here</div>
       </div>
-      <div class="graph-box" onclick="showPopup('Prediksi Latency')">
+      <div class="graph-box" onclick="showPopup('Latency')" data-key="latency(ms)">
         <h3>Latency</h3>
         <div class="graph-content">Latency prediction will appear here</div>
       </div>
-      <div class="graph-box" onclick="showPopup('Prediksi RSSI')">
+      <div class="graph-box" onclick="showPopup('RSSI')" data-key="rssi(dBm)">
         <h3>RSSI</h3>
         <div class="graph-content">RSSI prediction will appear here</div>
       </div>
-      <div class="graph-box" onclick="showPopup('Prediksi Packet Loss')">
+      <div class="graph-box" onclick="showPopup('Packet Loss')" data-key="packet_loss(%)">
         <h3>Packet Loss</h3>
         <div class="graph-content">Packet Loss prediction will appear here</div>
       </div>
-      <div class="graph-box" onclick="showPopup('Prediksi Throughput')">
+      <div class="graph-box" onclick="showPopup('Throughput')" data-key="throughput(bytes/sec)">
         <h3>Throughput</h3>
         <div class="graph-content">Throughput prediction will appear here</div>
       </div>
     </div>
     <div class="control-bar">
-      <button onclick="navigateTo('graphs')">Back</button>
-      <button onclick="navigateTo('summary')">Lihat Kesimpulan</button>
+      <button onclick="navigateToGraphs('graphs', 'ESP32 - A')">Back</button>
+      <button onclick="navigateTo('summary')">Next</button>
     </div>
   </div>
 
   <div class="main-content" id="summary">
     <div class="section-label" id="section-label-summary">ESP32 - A</div>
-    <h1><i class="fas fa-flag-checkered fa-icon"></i>Kesimpulan</h1>
-    <p>Prediksi lalu lintas jaringan IoT telah berhasil dilakukan menggunakan model ARIMA dan LSTM. Grafik menunjukkan tren yang bervariasi tergantung parameter yang dipilih. Terima kasih!</p>
+    <h1><i class="fas fa-flag-checkered fa-icon"></i>Thank You for Using our Application</h1>
+    <p>Prediksi lalu lintas jaringan IoT telah berhasil dilakukan menggunakan model ARIMA.</p>
+    <p>Grafik menunjukkan tren yang bervariasi tergantung parameter yang dipilih. Terima kasih!</p>
     <div class="control-bar">
-      <button onclick="navigateTo('prediction')">Back</button>
-      <button onclick="navigateTo('start')">Kembali ke Awal</button>
+      <button onclick="navigateToPrediction()">Back</button>
+      <button onclick="navigateTo('start')">Home</button>
     </div>
   </div>
 
@@ -180,5 +179,7 @@
   <div class="home-fab" id="home-fab" onclick="navigateTo('start')">
     <i class="fas fa-home"></i>
   </div>
-<script src="./js/main.js"></script>
-<script src="./js/index.js"></script>
+  <script src="./js/index.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/graphs.js"></script>
+<script src="./js/predict.js"></script>
